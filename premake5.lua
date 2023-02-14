@@ -1,6 +1,8 @@
 project "yaml-cpp"
 	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdirectory .. "/%{prj.name}")
 	objdir ("bin-obj/" .. outputdirectory .. "/%{prj.name}")
@@ -17,17 +19,18 @@ project "yaml-cpp"
 	{
 		"include"
 	}
+	
+	defines
+    {
+        "YAML_CPP_STATIC_DEFINE"
+    }
 
 	filter "system:windows"
 		systemversion "latest"
-		cppdialect "C++17"
-		staticruntime "off"
 
 	filter "system:linux"
 		pic "On"
 		systemversion "latest"
-		cppdialect "C++17"
-		staticruntime "off"
 
 	filter "configurations:Debug"
 		runtime "Debug"
